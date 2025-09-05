@@ -19,6 +19,8 @@ static const char *fonts[]                 = {"SF Mono:size=11"};
 static const float rootcolor[]             = COLOR(0x000000ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
+static int enableautoswallow = 1; /* enables autoswallowing newly spawned clients */
+static float swallowborder = 1.0f; /* add this multiplied by borderpx to border when a client is swallowed */
 static const char *cursor_theme            = "McMojave-cursors";
 static const char cursor_size[]            = "21"; /* Make sure it's a valid integer, otherwise things will break */
 static uint32_t colors[][3]                = {
@@ -37,10 +39,11 @@ static int log_level = WLR_ERROR;
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
-	/* app_id             title       tags mask     isfloating   monitor */
+	/* app_id             title       tags mask     isfloating   isterm   noswallow   monitor */
 	/* examples: */
-	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
-	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
+	{ "foot",             NULL,       0,            0,           1,       1,          -1 },
+	{ "Gimp_EXAMPLE",     NULL,       0,            1,           0,       0,          -1 }, /* Start on currently visible tags floating, not tiled */
+	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           0,       0,          -1 }, /* Start on ONLY tag "9" */
 };
 
 /* layout(s) */
@@ -142,7 +145,7 @@ static const char *menucmd[] = { "j4-dmenu-desktop", "--dmenu", "mew -i", NULL }
 #include "keys.h"
 static const Key keys[] = {
 	/* modifier                  key          function        argument */
-	{ MODKEY,                    Key_p,       spawn,          {.v = menucmd} },
+	{ MODKEY,                    Key_d,       spawn,          {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, Key_Return,  spawn,          {.v = termcmd} },
 	{ MODKEY,                    Key_b,          togglebar,      {0} },
 	{ MODKEY,                    Key_j,          focusstack,     {.i = +1} },
@@ -178,6 +181,8 @@ static const Key keys[] = {
 	{ MODKEY,                    Key_space,      setlayout,      {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, Key_space,      togglefloating, {0} },
 	{ MODKEY,                    Key_e,         togglefullscreen, {0} },
+	{ MODKEY,                    Key_a,          toggleswallow,  {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, Key_a,          toggleautoswallow,{0} },
 	{ MODKEY,                    Key_0,          view,           {.ui = ~0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, Key_0, tag,            {.ui = ~0} },
 	{ MODKEY,                    Key_comma,      focusmon,       {.i = WLR_DIRECTION_LEFT} },
