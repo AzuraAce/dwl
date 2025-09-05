@@ -1,4 +1,5 @@
 dwl
+config.h
 *.o
 *-protocol.c
 *-protocol.h
