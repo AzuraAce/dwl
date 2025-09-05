@@ -146,6 +146,7 @@ static const char *menucmd[] = { "j4-dmenu-desktop", "--dmenu", "mew -i", NULL }
 static const Key keys[] = {
 	/* modifier                  key          function        argument */
 	{ MODKEY,                    Key_d,       spawn,          {.v = menucmd} },
+	{ MODKEY,                    Key_p,       spawn,          SHCMD("mew-run") },
 	{ MODKEY|WLR_MODIFIER_SHIFT, Key_Return,  spawn,          {.v = termcmd} },
 	{ MODKEY,                    Key_b,          togglebar,      {0} },
 	{ MODKEY,                    Key_j,          focusstack,     {.i = +1} },
