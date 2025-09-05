@@ -195,6 +195,13 @@ static const Key keys[] = {
     TAGKEYS(          XKB_KEY_9, XKB_KEY_parenright,                  8),
     { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_C,          quit,           {0} },
 
+    { 0, XKB_KEY_XF86MonBrightnessUp,   spawn,                       SHCMD("~/scripts/dwl/dwl-brightness.sh up") },
+    { 0, XKB_KEY_XF86MonBrightnessDown, spawn,                       SHCMD("~/scripts/dwl/dwl-brightness.sh down") },
+    { 0, XKB_KEY_XF86AudioRaiseVolume,  spawn,                       SHCMD("~/scripts/dwl/dwl-volume.sh up") },
+    { 0, XKB_KEY_XF86AudioLowerVolume,  spawn,                       SHCMD("~/scripts/dwl/dwl-volume.sh down") },
+    { 0, XKB_KEY_XF86AudioMute,         spawn,                       SHCMD("~/scripts/dwl/dwl-volume.sh mute") },
+    { 0, XKB_KEY_XF86AudioMicMute,      spawn,                       SHCMD("~/scripts/dwl/dwl-volume.sh mute-mic") },
+
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
 	/* Ctrl-Alt-Fx is used to switch to another VT, if you don't know what a VT is
