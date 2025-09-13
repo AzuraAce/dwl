@@ -15,7 +15,7 @@ static const unsigned int gappoh           = 10; /* horiz outer gap between wind
 static const unsigned int gappov           = 10; /* vert outer gap between windows and screen edge */
 static const int showbar                   = 1; /* 0 means no bar */
 static const int topbar                    = 1; /* 0 means bottom bar */
-static const char *fonts[]                 = {"SF Mono:size=11"};
+static const char *fonts[]                 = {"Iosevka Fixed:size=12"};
 static const float rootcolor[]             = COLOR(0x000000ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
