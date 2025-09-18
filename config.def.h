@@ -15,14 +15,14 @@ static const unsigned int gappoh           = 10; /* horiz outer gap between wind
 static const unsigned int gappov           = 10; /* vert outer gap between windows and screen edge */
 static const int showbar                   = 1; /* 0 means no bar */
 static const int topbar                    = 1; /* 0 means bottom bar */
-static const char *fonts[]                 = {"SF Mono:size=11"};
+static const char *fonts[]                 = {"Terminus (TTF):size=13"};
 static const float rootcolor[]             = COLOR(0x000000ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
 static int enableautoswallow = 1; /* enables autoswallowing newly spawned clients */
 static float swallowborder = 1.0f; /* add this multiplied by borderpx to border when a client is swallowed */
-static const char *cursor_theme            = "McMojave-cursors";
-static const char cursor_size[]            = "21"; /* Make sure it's a valid integer, otherwise things will break */
+static const char *cursor_theme            = "WhiteSur-cursors";
+static const char cursor_size[]            = "24"; /* Make sure it's a valid integer, otherwise things will break */
 static uint32_t colors[][3]                = {
 	/*               fg          bg          border    */
 	[SchemeNorm] = { 0xbbbbbbff, 0x222222ff, 0x444444ff },
@@ -179,6 +179,7 @@ static const Key keys[] = {
 	{ MODKEY,                    Key_t,          setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                    Key_f,          setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                    Key_m,          setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                    Key_n,          spawn,         SHCMD("~/scripts/mew/mew_notes") },
 	{ MODKEY,                    Key_space,      setlayout,      {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, Key_space,      togglefloating, {0} },
 	{ MODKEY,                    Key_e,         togglefullscreen, {0} },
@@ -200,6 +201,7 @@ static const Key keys[] = {
 	TAGKEYS(                     Key_8,                       7),
 	TAGKEYS(                     Key_9,                       8),
     { MODKEY|WLR_MODIFIER_SHIFT, Key_c,          quit,           {0} },
+    { MODKEY|WLR_MODIFIER_SHIFT, Key_x,          spawn,           SHCMD("~/scripts/mew/mew_sys") },
 
     { 0, Key_XF86MonBrightnessUp,   spawn,                       SHCMD("~/scripts/dwl/dwl-brightness.sh up") },
     { 0, Key_XF86MonBrightnessDown, spawn,                       SHCMD("~/scripts/dwl/dwl-brightness.sh down") },
